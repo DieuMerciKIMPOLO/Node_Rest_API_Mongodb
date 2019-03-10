@@ -17,9 +17,11 @@ var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
 
 // ---------------------------------------------->
-const Dishes = require('./models/dishes');
+// const Dishes = require('./models/dishes');
 
-const url = 'mongodb://localhost:27017/conFusion';
+// const url = 'mongodb://localhost:27017/conFusion';
+var config = require('./config');
+const url = config.mongoUrl;
 const connect = mongoose.connect(url);
 
 connect.then((db) => {
@@ -100,19 +102,20 @@ var authenticate = require('./authenticate');
 
 app.use(passport.initialize());
 app.use(passport.session());
-function auth (req, res, next) {
-  console.log(req.user);
 
-  if (!req.user) {
-    var err = new Error('You are not authenticated!');
-    err.status = 403;
-    next(err);
-  }
-  else {
-        next();
-  }
-}
-app.use(auth);
+// function auth (req, res, next) {
+//   console.log(req.user);
+
+//   if (!req.user) {
+//     var err = new Error('You are not authenticated!');
+//     err.status = 403;
+//     next(err);
+//   }
+//   else {
+//         next();
+//   }
+// }
+// app.use(auth);
 // ---------------------------------------------->
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
