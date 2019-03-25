@@ -6,9 +6,9 @@ var User = require('../models/user');
 
 router.use(bodyParser.json());
 var passport = require('passport');
-
+// ,authenticate.verifyAdmin,
 var authenticate = require('../authenticate');
-router.get('/',authenticate.verifyUser,authenticate.verifyAdmin, function(req, res, next) {
+router.get('/',authenticate.verifyUser, function(req, res, next) {
   User.find({})
   .then((users) => {
       res.statusCode = 200;
